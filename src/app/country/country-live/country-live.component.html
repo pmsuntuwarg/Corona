@@ -1,0 +1,29 @@
+<button (click)="goBack()">Go Back</button>
+
+
+<div class="p-grid">
+  <div class="p-col-12 p-md-4 p-lg-4">
+    <p-card header="Total Confirmed">
+      <h2>{{latestData?.Confirmed || 0}}</h2>
+    </p-card>
+  </div>
+  <div class="p-col-12 p-md-4 p-lg-4">
+    <p-card header="Total Death">
+      <h2>{{latestData?.Deaths || 0}}</h2>
+    </p-card>
+  </div>
+  <div class="p-col-12 p-md-4 p-lg-4">
+    <p-card header="Total Recovered">
+      <h2>{{latestData?.Recovered || 0}}</h2>
+    </p-card>
+  </div>
+</div>
+
+<div class="p-grid">
+  <div class="p-col-12 p-md-4 p-lg-4">
+    <p-chart type="pie" [data]="pieChartData"></p-chart>
+  </div>
+  <div class="p-col-12 p-md-8 p-lg-8">
+    <p-chart type="line" [data]="lineGraphData"></p-chart>
+  </div>
+</div>

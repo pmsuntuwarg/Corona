@@ -1,0 +1,21 @@
+<p-table #tt [loading]="!summary" [columns]="cols" [value]="summary" sortMode="multiple" sortField="TotalConfirmed" [paginator]="true" [rows]="10" [responsive]="true" styleClass="ui-table-customers" [rowHover]="true" selectionMode="single">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" class="ui-column-title" [pSortableColumn]="col.field">
+          {{col.header}}
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+            <input *ngSwitchCase="'Country'" pInputText type="text" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)" class="ui-column-filter">
+        </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-summary let-columns="columns">
+      <tr [pSelectableRow]="summary" (click)="onRowSelect(summary)">
+        <td *ngFor="let col of columns">
+          {{summary[col.field]}}
+      </td>
+      </tr>
+  </ng-template>
+</p-table>

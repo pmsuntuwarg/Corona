@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import { Country } from 'src/interfaces/country';
 import { Observable } from 'rxjs/internal/Observable';
 import { CoronaSummary } from 'src/interfaces/summary';
+import { CoronaData } from 'src/interfaces/corona-data';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,10 @@ export class DataService {
   getSummary() {
     return this.http.get(`${this.baseUrl}/summary`)
                       .pipe(map((response) => response as CoronaSummary));
+  }
+
+  getCountryWiseData(slug: string) {
+    return this.http.get(`${this.baseUrl}/country/${slug}`)
+                      .pipe(map((response) => response));
   }
 }

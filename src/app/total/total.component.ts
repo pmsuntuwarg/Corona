@@ -20,8 +20,8 @@ export class CoronaTotalComponent implements OnInit {
     if (!this.countryWiseList) {
       this.dataService.getSummary().subscribe((res) => {
         this.countryWiseList = res;
-        for(let index in this.countryWiseList.Countries) {
-          let country = this.countryWiseList.Countries[index];
+        for(const index in this.countryWiseList.Countries) {
+          const country = this.countryWiseList.Countries[index];
           this.totalConfirmed = country['TotalConfirmed'] + this.totalConfirmed;
           this.totalDeath = country['TotalDeaths'] + this.totalDeath;
           this.totalRecovered = country['TotalRecovered'] + this.totalRecovered;
