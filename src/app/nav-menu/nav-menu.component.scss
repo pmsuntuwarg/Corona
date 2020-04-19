@@ -1,3 +1,13 @@
+$backgroundColor : #1a2224;
+$boxBackground: #1a352b;
+
+nav {
+  border: none !important;
+}
+.navbar-dark {
+  background-color: $backgroundColor !important;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -11,8 +21,4 @@ html {
   html {
     font-size: 16px;
   }
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }

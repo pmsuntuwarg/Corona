@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from 'src/service/data.service';
-import { CoronaSummary } from 'src/interfaces/summary';
+import { CoronaSummary, Summary } from 'src/interfaces/summary';
 
 @Component({
   selector: 'corona-total',
@@ -11,7 +11,11 @@ export class CoronaTotalComponent implements OnInit {
   totalConfirmed: number = 0;
   totalDeath: number = 0;
   totalRecovered: number = 0;
-  countryWiseList: CoronaSummary;
+  newRecovered: number = 0;
+  newDeaths: number = 0;
+  newConfirmed: number = 0;
+  countryWiseList: Array<Summary>;
+
   constructor(private dataService: DataService) {
 
   }
@@ -19,13 +23,16 @@ export class CoronaTotalComponent implements OnInit {
   ngOnInit() {
     if (!this.countryWiseList) {
       this.dataService.getSummary().subscribe((res) => {
-        this.countryWiseList = res;
-        for(const index in this.countryWiseList.Countries) {
-          const country = this.countryWiseList.Countries[index];
-          this.totalConfirmed = country['TotalConfirmed'] + this.totalConfirmed;
-          this.totalDeath = country['TotalDeaths'] + this.totalDeath;
-          this.totalRecovered = country['TotalRecovered'] + this.totalRecovered;
-        }
+        this.countryWiseList = res.Countries;
+        this.totalConfirmed = res.Global.TotalConfirmed;
+        this.totalDeath = res.Global.TotalDeaths;
+        this.totalRecovered = res.Global.TotalRecovered;
+
+        res.Countries.map((data) => {
+          this.newDeaths = this.newDeaths + data.NewDeaths;
+          this.newConfirmed = this.newConfirmed + data.NewConfirmed;
+          this.newRecovered = this.newRecovered + data.NewRecovered;
+        });
       });
     }
   }

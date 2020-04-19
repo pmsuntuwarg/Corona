@@ -1,5 +1,10 @@
 export interface CoronaSummary {
-  Countries: {
+  Global: Summary;
+  Countries: Array<Summary>;
+  Date: Date;
+}
+
+export interface Summary {
     Country: string;
     Slug: string;
     NewConfirmed: number;
@@ -8,6 +13,4 @@ export interface CoronaSummary {
     TotalDeaths: number;
     NewRecovered: number;
     TotalRecovered: number;
-  };
-  Date: Date;
 }

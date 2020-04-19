@@ -12,11 +12,14 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import {TableModule} from 'primeng/table';
 import {CardModule} from 'primeng/card';
 import {ChartModule} from 'primeng/chart';
+import {GMapModule} from 'primeng/gmap';
 
 import { CoronaTotalComponent } from './total/total.component';
 import { CountryLiveComponent } from './country/country-live/country-live.component';
 import { CountryComponent } from './country/country.component';
 import { CountryListComponent } from './country/country-list/country-list.component';
+import { PrettyCountPipe } from 'src/pipes/pretty-count.pipe';
+import { MapComponent } from './map/map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,9 @@ import { CountryListComponent } from './country/country-list/country-list.compon
     CountryComponent,
     CountryListComponent,
     CountryLiveComponent,
-    CoronaTotalComponent
+    CoronaTotalComponent,
+    MapComponent,
+    PrettyCountPipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,8 @@ import { CountryListComponent } from './country/country-list/country-list.compon
     HttpClientModule,
     TableModule,
     CardModule,
-    ChartModule
+    ChartModule,
+    GMapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'corona-country-list',
-  templateUrl: './country-list.component.html'
+  templateUrl: './country-list.component.html',
+  styleUrls: ['./country-list.component.scss']
 })
 
 export class CountryListComponent implements OnInit {
@@ -24,8 +25,11 @@ export class CountryListComponent implements OnInit {
     this.cols = [
       { field: 'Country', header: 'Country' },
       { field: 'TotalConfirmed', header: 'TotalConfirmed' },
+      { field: 'NewConfirmed', header: 'NewConfirmed' },
+      { field: 'TotalRecovered', header: 'TotalRecovered' },
+      { field: 'NewRecovered', header: 'NewRecovered' },
       { field: 'TotalDeaths', header: 'TotalDeaths' },
-      { field: 'TotalRecovered', header: 'TotalRecovered' }
+      { field: 'NewDeaths', header: 'NewDeaths' }
     ];
   }
 

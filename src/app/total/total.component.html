@@ -2,17 +2,32 @@
 <div class="p-grid">
   <div class="p-col">
     <p-card header="Total Confirmed">
-      <h2>{{totalConfirmed}}</h2>
+      <h2>{{totalConfirmed | prettyCount}}</h2>
+    </p-card>
+  </div>
+  <div class="p-col">
+    <p-card header="New Confirmed">
+      <h2>{{newConfirmed | prettyCount}}</h2>
     </p-card>
   </div>
   <div class="p-col">
     <p-card header="Total Death">
-      <h2>{{totalDeath}}</h2>
+      <h2>{{totalDeath | prettyCount}}</h2>
+    </p-card>
+  </div>
+  <div class="p-col">
+    <p-card header="New Deaths">
+      <h2>{{newDeaths | prettyCount }}</h2>
     </p-card>
   </div>
   <div class="p-col">
     <p-card header="Total Recovered">
-      <h2>{{totalRecovered}}</h2>
+      <h2>{{totalRecovered | prettyCount}}</h2>
+    </p-card>
+  </div>
+  <div class="p-col">
+    <p-card header="New Confirmed">
+      <h2>{{newRecovered | prettyCount}}</h2>
     </p-card>
   </div>
 </div>

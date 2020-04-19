@@ -29,9 +29,9 @@ export class DataService {
               }));
   }
 
-  getSummary() {
-    return this.http.get(`${this.baseUrl}/summary`)
-                      .pipe(map((response) => response as CoronaSummary));
+  getSummary(): Observable<CoronaSummary> {
+      return this.http.get(`${this.baseUrl}/summary`)
+      .pipe(map((response) => response as CoronaSummary));
   }
 
   getCountryWiseData(slug: string) {

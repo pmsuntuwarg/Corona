@@ -21,15 +21,9 @@ export class CountryLiveComponent implements OnInit {
   latestData: CoronaData;
   pieChartData: any;
   lineGraphData: any;
-
-  options: {
-    scales: {
-        yAxes: [{
-            id: 'y-axis',
-            type: 'logarithmic'
-        }]
-    }
-  };
+  deathGraphData: any;
+  recoveredGraphData: any;
+  activeGraphData: any;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -52,7 +46,7 @@ export class CountryLiveComponent implements OnInit {
       // );
       this.latestData = this.coronaDataList[total - 1];
       this.pieChartDataPrepare(this.latestData);
-      this.lineGraphPrepare();
+      this.graphPrepare();
     });
   }
 
@@ -76,39 +70,102 @@ export class CountryLiveComponent implements OnInit {
           }]
       };
   }
-  lineGraphPrepare() {
-    let label: any[] = [];
-    let active: any[] = [];
-    let death: any[] = [];
-    let recovered: any[] = [];
+
+  graphPrepare() {
+    const label: any[] = [];
+    const active: any[] = [];
+    const deaths: any[] = [];
+    const recovered: any[] = [];
     this.coronaDataList.forEach((d, index) => {
         active.push(d.Active);
-        death.push(d.Deaths);
+        deaths.push(d.Deaths);
         label.push((new Date(d.Date).toDateString()));
         recovered.push(d.Recovered);
     });
-    this.lineGraphData = {
+
+    // this.lineGraphData = {
+    //   labels: label,
+    //   datasets: [
+    //       {
+    //           label: 'Active',
+    //           data: active,
+    //           fill: false,
+    //           borderColor: '#4bc0c0'
+    //       },
+    //       {
+    //           label: 'Deaths',
+    //           data: deaths,
+    //           fill: false,
+    //           borderColor: '#565656'
+    //       },
+    //       {
+    //         label: 'Recovered',
+    //         data: recovered,
+    //         fill: false,
+    //         borderColor: '#765656'
+    //     }
+    //   ]
+    // };
+
+    this.deathGraphData = {
       labels: label,
       datasets: [
-          {
-              label: 'Active',
-              data: active,
-              fill: false,
-              borderColor: '#4bc0c0'
-          },
-          {
-              label: 'Deaths',
-              data: death,
-              fill: false,
-              borderColor: '#565656'
-          },
-          {
-            label: 'Recovered',
-            data: recovered,
-            fill: false,
-            borderColor: '#765656'
+        {
+            label: 'Death',
+            backgroundColor: '#b52121',
+            borderColor: '#1E88E5',
+            data: deaths
         }
       ]
-    }
+    };
+
+    this.recoveredGraphData = {
+      labels: label,
+      datasets: [
+        {
+            label: 'Recovered',
+            backgroundColor: '#21b53f',
+            borderColor: '#1E88E5',
+            data: recovered
+        }
+      ]
+    };
+
+    this.activeGraphData = {
+      labels: label,
+      datasets: [
+        {
+            label: 'Active',
+            backgroundColor: '#42A5F5',
+            borderColor: '#1E88E5',
+            data: active
+        }
+      ]
+    };
+  }
+
+  prepareGraphOptions(graphTitle) {
+    return {
+      title: {
+        display: true,
+        text: graphTitle,
+        fontSize: 16
+      },
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+              unit: 'month'
+          }
+        }],
+        yAxes: [{
+          id: 'y-axis',
+          type: 'linear',
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    };
   }
 }
